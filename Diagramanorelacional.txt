@@ -1,0 +1,70 @@
+{
+  "Veterinaria": {
+    "idVeterinaria": "CHAR(4) NOT NULL",
+    "Nombre": "VARCHAR(45) NOT NULL",
+    "Dirección": "VARCHAR(45) NOT NULL",
+    "Télefono": "INT(9) NOT NULL",
+    "primaryKey": "idVeterinaria"
+  },
+  "Persona": {
+    "idPersona": "CHAR(4) NOT NULL",
+    "idveterinaria": "CHAR(4) NOT NULL",
+    "Nombre": "VARCHAR(45) NOT NULL",
+    "Apellido": "VARCHAR(45) NOT NULL",
+    "Edad": "INT(2) NOT NULL",
+    "Cédula": "INT(9) NULL",
+    "primaryKey": "idPersona",
+    "indexes": [
+      {
+        "name": "idVeterinaria_idx",
+        "fields": [
+          "idveterinaria ASC"
+        ]
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "idveterinaria",
+        "fields": [
+          "idveterinaria"
+        ],
+        "references": {
+          "table": "Veterinaria",
+          "field": "idVeterinaria"
+        },
+        "onDelete": "NO ACTION",
+        "onUpdate": "NO ACTION"
+      }
+    ]
+  },
+  "Animales": {
+    "idAnimales": "CHAR(4) NOT NULL",
+    "idpersona": "CHAR(4) NOT NULL",
+    "Nombre": "VARCHAR(45) NOT NULL",
+    "Género": "VARCHAR(1) NOT NULL",
+    "Raza": "VARCHAR(45) NOT NULL",
+    "primaryKey": "idAnimales",
+    "indexes": [
+      {
+        "name": "idpersona_idx",
+        "fields": [
+          "idpersona ASC"
+        ]
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "idpersona",
+        "fields": [
+          "idpersona"
+        ],
+        "references": {
+          "table": "Persona",
+          "field": "idPersona"
+        },
+        "onDelete": "NO ACTION",
+        "onUpdate": "NO ACTION"
+      }
+    ]
+  }
+}
